@@ -34,4 +34,4 @@ jobs:
         env:
           NDENO_DEV_BUCKET: ${{ secrets.NDENO_DEV_BUCKET }}
         run: |
-          aws s3 sync dist $NDENO_DEV_BUCKET
+          aws s3 sync dist/ $NDENO_DEV_BUCKET
