@@ -23,8 +23,6 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Configure AWS credentials from account
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -34,7 +32,4 @@ jobs:
         env:
           NDENO_DEV_BUCKET: ${{ secrets.NDENO_DEV_BUCKET }}
         run: |
-          ls 
-        # run: |
-        #   ls 
-        #   aws s3 sync dist/ $NDENO_DEV_BUCKET
+          aws s3 sync dist/ $NDENO_DEV_BUCKET
