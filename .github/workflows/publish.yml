@@ -26,6 +26,7 @@ jobs:
       id-token: write
       contents: read
     steps:
+    
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure AWS credentials from account
@@ -34,5 +35,7 @@ jobs:
         role-to-assume: ${{ secrets.NDENO_DEV_ROLE }}
         aws-region: us-east-1
     - name: Copy files to the test website with the AWS CLI
+      env:
+        NDENO_BUCKET: ${{ secrets.NDENO_BUCKET }}
       run: |
-        aws s3 sync . ${{ secrets.NDENO_BUCKET}}/scroll
+        aws s3 sync . "$NDENO_BUCKET"/scroll
