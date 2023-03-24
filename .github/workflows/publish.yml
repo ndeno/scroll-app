@@ -4,8 +4,7 @@ on:
     branches:
       - 'main'
 jobs:
-  deploy:
-  name: Build
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,19 +20,19 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
-  name: Upload to Amazon S3
-  runs-on: ubuntu-latest
-  permissions:
-    id-token: write
-    contents: read
-  steps:
-  - name: Checkout
-    uses: actions/checkout@v3
-  - name: Configure AWS credentials from account
-    uses: aws-actions/configure-aws-credentials@v2
-    with:
-      role-to-assume: ${{ secrets.NDENO_DEV_ROLE }}
-      aws-region: us-east-1
-  - name: Copy files to the test website with the AWS CLI
-    run: |
-      aws s3 sync . ${{ secrets.NDENO_BUCKET}}/scroll
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Configure AWS credentials from account
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: ${{ secrets.NDENO_DEV_ROLE }}
+        aws-region: us-east-1
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync . ${{ secrets.NDENO_BUCKET}}/scroll
