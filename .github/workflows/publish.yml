@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - name: Set Node.js 16.x
@@ -20,22 +23,15 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
-  upload:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    steps:
-    
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Configure AWS credentials from account
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: ${{ secrets.NDENO_DEV_ROLE }}
-        aws-region: us-east-1
-    - name: Copy files to the test website with the AWS CLI
-      env:
-        NDENO_DEV_BUCKET: ${{ secrets.NDENO_DEV_BUCKET }}
-      run: |
-        aws s3 sync . $NDENO_DEV_BUCKET
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials from account
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.NDENO_DEV_ROLE }}
+          aws-region: us-east-1
+      - name: Copy files to the test website with the AWS CLI
+        env:
+          NDENO_DEV_BUCKET: ${{ secrets.NDENO_DEV_BUCKET }}
+        run: |
+          aws s3 sync dist $NDENO_DEV_BUCKET
