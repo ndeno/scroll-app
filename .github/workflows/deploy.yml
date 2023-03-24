@@ -1,3 +1,8 @@
+name: deploy
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   deploy:
   name: Build
