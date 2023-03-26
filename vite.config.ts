@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+const s3Path = '/scroll'; 
+const base = import.meta.env?.CDN ? `${import.meta.env?.CDN}${s3Path}` : "/"; 
+
 export default defineConfig({
-  base: "./",
+  base,
   plugins: [react()],
 })
