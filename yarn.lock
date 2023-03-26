@@ -604,6 +604,11 @@ node-releases@^2.0.8:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.10.tgz#c311ebae3b6a148c89b1813fd7c4d3c024ef537f"
   integrity sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==
 
+num-words@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/num-words/-/num-words-1.2.3.tgz#f6c33b7cdf14f1b0c4198d1ab7bcf9da9a17116d"
+  integrity sha512-tfKqF8sCX1sb2LjrZyrqNF7SDyDzxcyKtpNlRqqaOTImmqTEclGYEs17FtpbXsuuyJijwOWzuTy+DasYf/FvlA==
+
 path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"

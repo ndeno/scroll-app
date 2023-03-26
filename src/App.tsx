@@ -1,7 +1,12 @@
 import * as React from "react";
 import "./App.css";
+import numwords from 'num-words'
 
-const MAX_PAGES = 100;
+const MAX_PAGES = 1000;
+
+function capitalizeFirstLetter(word :string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
 
 type Item = {
   count: number;
@@ -94,11 +99,11 @@ const App = () => {
       {items.map((item, index) =>
         index + 1 === items.length ? (
           <Item reference={lastItemRef} key={index} color={item.color}>
-            {item.count}
+            {capitalizeFirstLetter(numwords(item.count))}
           </Item>
         ) : (
           <Item key={index} color={item.color}>
-            {item.count}
+            {capitalizeFirstLetter(numwords(item.count))}
           </Item>
         )
       )}
