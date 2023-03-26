@@ -20,6 +20,8 @@ jobs:
         with:
           cmd: install
       - name: Build production
+        env:
+          NDENO_CDN: ${{ secrets.NDENO_CDN }}
         uses: borales/actions-yarn@v4
         with:
           cmd: build
